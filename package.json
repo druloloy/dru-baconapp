@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "postinstall": "npm install --prefix client",
-    "start": "nodemon app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run build --prefix client"
+    "start": "node app.js",
+    "install-dev":"cd client && npm install",
+    "build-dev":"cd client && npm run build",
+    "heroku-postbuild": "npm install-dev && npm build-dev"
   },
   "keywords": [],
   "author": "",
