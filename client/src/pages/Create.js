@@ -50,7 +50,8 @@ const Create = () =>{
                 
                 return axios.post('/history/add', history)
                 .then(()=>{
-                    return toast.success("Successfully added!", {position: "bottom-center", toastId: res.data._id})
+                    toast.success("Successfully added!", {position: "bottom-center", toastId: res.data._id})
+                    window.location = '/';
                 })
             })
             .catch(e=>console.log(e));      
