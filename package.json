@@ -6,7 +6,7 @@
     "start": "node app.js",
     "install-dev":"cd client && npm install",
     "build-dev":"cd client && npm run build",
-    "heroku-postbuild": "npm install-dev && npm build-dev"
+    "heroku-postbuild": "npm run install-dev && npm run build-dev"
   },
   "keywords": [],
   "author": "",
