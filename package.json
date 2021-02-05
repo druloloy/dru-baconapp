@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "install-dev":"cd client && npm install",
-    "build-dev":"cd client && npm run build",
-    "heroku-postbuild": "npm run install-dev && npm run build-dev"
+    "start": "node app",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
