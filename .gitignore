@@ -1,0 +1,7 @@
+# SERVER
+node_modules
+.env
+
+# CLIENT
+/savings-app/build
+/savings-app/node_modules
