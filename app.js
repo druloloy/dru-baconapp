@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT | 5000;
+const LOCAL = process.env.LOCAL_ADDRESS | '0.0.0.0';
 const ATLAS_URI = process.env.ATLAS_URI;
 
 app.use(cors());
@@ -36,7 +37,7 @@ mongoose.connect(ATLAS_URI, {
 
 // serve client
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname,'client','build')));
+    app.use(express.static(path.join(__dirname,'/client/build')));
 
     app.get('*', (req,res)=>{
         res.sendFile(path.join(__dirname, 'client','build','index.html'));
@@ -49,6 +50,6 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 // run express server
-app.listen(PORT, ()=>{
-        console.log('Listening on port: '+ PORT);
+app.listen(PORT, LOCAL, ()=>{
+        console.log(`APP RUNNING ON ${LOCAL}:${PORT}`);
 })
