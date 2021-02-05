@@ -1,0 +1,16 @@
+:root{
+    --color-aqua:  rgb(211, 248, 226);
+    --color-lavender: rgb(228, 193, 249);
+    --color-magenta: rgb(246, 148, 193);
+    --color-cookiesncream: rgb(237, 231, 177);  
+    --color-freshair: rgb(169, 222, 249);
+
+    --box-shadow-dark: 11, 11, 11;
+    --box-shadow-light: 233, 233, 233;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+

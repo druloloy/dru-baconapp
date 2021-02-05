@@ -12,18 +12,13 @@ const ATLAS_URI = process.env.ATLAS_URI;
 app.use(cors());
 app.use(express.json()); 
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname,'/savings-app/build')));
 
-    app.get('*', (req,res)=>{
-        res.sendFile(path.join(__dirname, 'savings-app','build','index.html'));
-    })  
-    
-}else{
-    app.get('/', (req,res)=>{
-        res.send('API RUNNING');
-    })
-}
+// mount routes
+const bank_route = require("./routes/bank-routes");
+const history_route = require("./routes/history-routes");
+
+app.use('/bank',bank_route);
+app.use('/history', history_route);
 
 
 // connect to MongoDB database
@@ -39,14 +34,21 @@ mongoose.connect(ATLAS_URI, {
     })
     .catch(e=>console.log(e));
 
+// serve client
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname,'client','build')));
+
+    app.get('*', (req,res)=>{
+        res.sendFile(path.join(__dirname, 'client','build','index.html'));
+    })  
+    
+}else{
+    app.get('/', (req,res)=>{
+        res.send('API RUNNING');
+    })
+}
+
 // run express server
 app.listen(PORT, ()=>{
         console.log('Listening on port: '+ PORT);
 })
-
-// mount routes
-const bank_route = require("./routes/bank-routes");
-const history_route = require("./routes/history-routes");
-
-app.use('/bank',bank_route);
-app.use('/history', history_route);
