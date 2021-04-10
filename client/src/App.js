@@ -38,8 +38,8 @@ const App = () =>{
     const fetchDatas = async () =>{
       try {
         await Promise.all([
-            axios.get('/bank'),
-            axios.get('/history')
+            axios.get('api/bank'),
+            axios.get('api/history')
           ])
           .then(axios.spread((bankData, historyData)=>{
             setBanks(bankData.data)

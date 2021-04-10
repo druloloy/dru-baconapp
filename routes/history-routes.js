@@ -17,7 +17,6 @@ const getHistoryAvailable = async (req, res)=>{
     try {
         await History.find( {isDeleted: false} , (err, result)=>{
             if(err) return res.send(err);
-
             res.send(result);
         }).limit(Number(req.params.limit))
         .sort( { creationDate: -1 })
@@ -84,7 +83,7 @@ router.get('/', getHistory);
 router.get('/available/:limit', getHistoryAvailable);
 router.get('/:limit', getHistoryLimit);
 router.post('/add', addHistory);
-router.post('/available/delete', deleteHistory);
+router.delete('/available/delete', deleteHistory);
 router.delete('/flush', flushHistory);
 
 module.exports = router;

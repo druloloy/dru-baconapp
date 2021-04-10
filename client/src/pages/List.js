@@ -33,11 +33,11 @@ const List = ({banks}) =>{
             
         }
         console.log(name, exodusInformation)
-        axios.delete('http://192.168.100.9:5000/bank/delete/'+id)
+        axios.delete('api/bank/delete/'+id)
         .then(res=>res.data)
         .then(data=>{
             if(data.error) return toast.error(data.error.message, {position: "bottom-center", toastId: data._id})
-            axios.post('http://192.168.100.9:5000/history/add', exodusInformation)
+            axios.post('api/history/add', exodusInformation)
             .then(res=>res.data)
             .then(data=>{
                 setBanks(bank.filter(bank=>bank._id!==id));    
@@ -49,7 +49,7 @@ const List = ({banks}) =>{
     
     }
 
-    const displayListResult = bank.length>0 ? bank.map((bank, index)=>{
+    const displayListResult = bank.length>0 ? bank.map((bank)=>{
         return <BanksContainer 
         key={ bank._id } 
         id={ bank._id }

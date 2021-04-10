@@ -43,12 +43,12 @@ const Create = () =>{
             }
         }
         try {
-            axios.post('/bank/add', data)
+            axios.post('api/bank/add', data)
             .then((res)=>{
 
                 if(res.data.error) return toast.error(res.data.error, {position: "bottom-center"})
                 
-                return axios.post('/history/add', history)
+                return axios.post('api/history/add', history)
                 .then(()=>{
                     toast.success("Successfully added!", {position: "bottom-center", toastId: res.data._id})
                     window.location = '/';

@@ -51,12 +51,15 @@ const History = (props) =>{
         let mount = true;
 
         if(mount){
-            setHistory(props.history)
+            axios.get('api/history/available/10')
+            .then((history)=>{
+                setHistory(history.data);
+            })
             mount=false;
         }
-    }, [props.history])
+    }, [history])
 
-    const displayListResult = history.length>0 ? history.map((hist, index)=>{
+    const displayListResult = history.length>0 ? history.map((hist)=>{
         return <HistoryContainer 
         key={ hist._id }
         history={ hist }  
@@ -67,11 +70,12 @@ const History = (props) =>{
         />
     }) : <NoPage/>
 
-    const deleteHistory = async (e) =>{
+    const deleteHistory = async () =>{
         try {
-            await axios.post('http://localhost:5000/history/available/delete')
+            await axios.delete('api/history/available/delete')
             .then(()=>{
-                history.filter(hist=>hist.isDeleted)
+                setHistory(history.filter(hist=>hist.isDeleted));
+                console.log("Deleted");
             })
             .catch(e=>console.log(e));
         } catch (error) {
@@ -82,7 +86,7 @@ const History = (props) =>{
         <div className="container-float">
             <div className="container">
                 <h3>Your Recent History</h3>
-                <Link to="#" className="link-dark" onClick={deleteHistory}>delete history</Link>
+                <Link to="#" className="link-dark" onClick={()=>deleteHistory()}>delete history</Link>
                 { displayListResult }
                 
             </div>

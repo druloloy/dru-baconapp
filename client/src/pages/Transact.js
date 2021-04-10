@@ -94,11 +94,11 @@ const Transact = ({ banks }) =>{
             
             //frontend - backend connection
             
-            axios.post('/bank/savings/update/'+id, {savings: savingsData})
+            axios.post('api/bank/savings/update/'+id, {savings: savingsData})
             .then(res=>res.data)
             .then(data => {
                 if(data.error) return toast.error(data.error.message, {position: "bottom-center", toastId: data._id})
-                axios.post('/history/add', historyInformation)
+                axios.post('api/history/add', historyInformation)
                 .then(res=>res.data)
                 .then(data=>{
                     toast.success("Successfully updated!", {position: "bottom-center", toastId: data._id})
