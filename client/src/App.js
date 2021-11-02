@@ -104,7 +104,7 @@ const App = () =>{
       <ToastContainer limit={3} autoClose={3000}/>
       <Switch>
         <Route exact path="/">
-          <HomeCustom totalSavings={totalSavings} />
+          <Home totalSavings={totalSavings} />
         </Route>
         <Route path="/create"> 
           <Create /> 
