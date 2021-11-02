@@ -5,8 +5,8 @@ import axios from 'axios';
 import Header from './components/Header';
 
 import Create from './pages/Create';
-// import Home from './pages/Home';
-import HomeCustom from './pages/HomeCustom';
+import Home from './pages/Home';
+// import HomeCustom from './pages/HomeCustom'; // icons by us
 import History from './pages/History';
 import List from './pages/List';
 import Savings from './pages/Savings';
