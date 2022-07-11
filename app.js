@@ -23,16 +23,14 @@ app.use('/api/history', history_route);
 
 // connect to MongoDB database
 
-mongoose.connect(ATLAS_URI, {
+mongoose.connection(ATLAS_URI, {
         useUnifiedTopology: true,
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useFindAndModify: false
+        useNewUrlParser: true
     })
-    .then(res=>{
-        console.log('SuccessFully connected to database.')
-    })
-    .catch(e=>console.log(e));
+const connection = mongoose.connection;
+connection.once('open', () => {
+console.log('DB connected!');
+});
 
 // serve client
 if(process.env.NODE_ENV === 'production'){
